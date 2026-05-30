@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌸 HabitBear — Academic & Habits Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght=400;600;700;800;900&family=Quicksand:wght=400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="bg-decorations">
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="mascot-wrapper">
+        <div class="mascot" id="mascot">
+          <div class="bear-body">
+            <div class="ear ear-left"><div class="ear-inner"></div></div>
+            <div class="ear ear-right"><div class="ear-inner"></div></div>
+            <div class="bear-head">
+              <div class="eyes">
+                <div class="eye eye-left"></div>
+                <div class="eye eye-right"></div>
+              </div>
+              <div class="bear-nose"></div>
+              <div class="bear-mouth"><div class="mouth-line"></div></div>
+              <div class="blush blush-left"></div><div class="blush blush-right"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bear-shadow"></div>
+      </div>
+      <div class="hero-text">
+        <h1 class="app-title">HabitBear 🐻</h1>
+        <p class="app-subtitle">Sistem Pelacak Kebiasaan & Perencanaan Kuliah Digital</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="dashboard-stats max-width-container pop-in">
+    <div class="stat-card box-progress">
+      <div class="stat-info">
+        <span class="stat-icon">🎯</span>
+        <div>
+          <h4>Total Goal Progress</h4>
+          <p>Persentase keberhasilan kebiasaanmu</p>
+        </div>
+      </div>
+      <div class="progress-circle-container">
+        <div class="progress-bar-linear">
+          <div class="progress-fill" id="habitProgressFill" style="width: 0%"></div>
+        </div>
+        <span class="progress-text-pct" id="habitProgressText">0% Selesai</span>
+      </div>
+    </div>
+
+    <div class="stat-card box-tasks">
+      <div class="stat-info">
+        <span class="stat-icon">🚀</span>
+        <div>
+          <h4>Planning Tasks Completed</h4>
+          <p>Tugas kuliah & rencana terselesaikan</p>
+        </div>
+      </div>
+      <div class="todo-counter-box">
+        <span class="counter-number" id="todoCounter">0/0</span>
+        <p>Target Terpenuhi</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="month-tabs-container">
+    <div class="month-tabs" id="monthTabs"></div>
+  </div>
+
+  <main class="main-grid">
+    
+    <section class="left-column">
+      <div class="card add-habit-card pop-in">
+        <h2 class="card-title">➕ Tambah Target Kebiasaan Baru</h2>
+        <div class="add-form">
+          <div class="emoji-picker-wrapper">
+            <button class="emoji-trigger" id="emojiTrigger" type="button">🌟</button>
+            <div class="emoji-grid" id="emojiGrid">
+              <span class="emoji-opt" data-emoji="🌟">🌟</span>
+              <span class="emoji-opt" data-emoji="💪">💪</span>
+              <span class="emoji-opt" data-emoji="📚">📚</span>
+              <span class="emoji-opt" data-emoji="💧">💧</span>
+              <span class="emoji-opt" data-emoji="🏃">🏃</span>
+              <span class="emoji-opt" data-emoji="🧠">🧠</span>
+              <span class="emoji-opt" data-emoji="❤️">❤️</span>
+            </div>
+          </div>
+          <input type="text" id="habitInput" class="habit-input" placeholder="Misal: Belajar coding, Baca buku 10 lembar..." maxlength="40" />
+          <button class="btn-add" id="btnAdd" type="button">Simpan</button>
+        </div>
+      </div>
+
+      <div class="card tracker-card pop-in animation-delay-1">
+        <div class="tracker-header">
+          <h2 class="card-title">🗓️ Tracker Kebiasaan (<span id="activeMonthLabel">Januari</span>)</h2>
+          <div class="week-selector">
+            <button id="btnPrevWeek" type="button">◀</button>
+            <span id="currentWeekLabel">Minggu 1</span>
+            <button id="btnNextWeek" type="button">▶</button>
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="tracker-table">
+            <thead>
+              <tr>
+                <th>KEBIASAAN</th>
+                <th>S</th><th>S</th><th>R</th><th>K</th><th>J</th><th>S</th><th>M</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="trackerTableBody"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState">
+            <p>Belum ada target di minggu ini. Tambahkan goal pertamamu di atas! 🐻</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="right-column">
+      <div class="card calendar-card pop-in">
+        <h3 class="card-title">📅 Kalender Aktivitas Bulanan</h3>
+        <div class="mini-calendar" id="miniCalendar"></div>
+      </div>
+
+      <div class="card schedule-card pop-in animation-delay-1">
+        <h3 class="card-title">🎓 Jadwal Kuliah</h3>
+        <div class="schedule-list">
+          <div class="schedule-item monday">
+            <div class="day-badge">SENIN</div>
+            <div class="subjects"><span>🗄️ Basis Data</span><span>💼 Manajemen Bisnis</span></div>
+          </div>
+          <div class="schedule-item tuesday">
+            <div class="day-badge">SELASA</div>
+            <div class="subjects"><span>💻 Bahasa Pemrograman</span></div>
+          </div>
+          <div class="schedule-item wednesday">
+            <div class="day-badge">RABU</div>
+            <div class="subjects"><span>📊 Sistem Informasi Statistika</span><span>🕌 Keagamaan</span></div>
+          </div>
+          <div class="schedule-item thursday">
+            <div class="day-badge">KAMIS</div>
+            <div class="subjects"><span>🦅 Pancasila</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card todo-card pop-in animation-delay-2">
+        <h3 class="card-title">📝 Planning & To-Do List</h3>
+        <div class="todo-form">
+          <input type="text" id="todoInput" placeholder="Tulis rencana / tugas kuliah baru..." maxlength="50" />
+          <button id="btnTodoAdd" type="button">➕</button>
+        </div>
+        <ul class="todo-list" id="todoList"></ul>
+      </div>
+    </section>
+  </main>
+
+  <section class="notes-container max-width-container pop-in animation-delay-2">
+    <div class="card notes-card">
+      <h3 class="card-title">🗒️ Catatan Panjang, Ide, & Refleksi Rencana Masa Depan</h3>
+      <p class="notes-subtitle">Semua catatan di bawah ini otomatis tersimpan langsung ke sistem browser-mu secara real-time.</p>
+      <textarea id="planningNotes" class="planning-textarea" placeholder="Tulis draft jurnal, rangkuman projek kuliah, coretan ide kreatif, atau rencana jangka panjangmu di sini... 💡"></textarea>
+      <div class="notes-status-bar">
+        <span id="saveStatusIcon">✨ Aman</span>
+        <span id="saveStatusText">Semua tulisan telah disimpan otomatis ke LocalStorage</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <p>🐻 HabitBear Premium Dashboard ✨ Organisasi Kuliah & Pelacak Rencana Hidup</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
