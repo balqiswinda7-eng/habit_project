@@ -1,192 +1,407 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌸 HabitBear — Academic & Habits Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght=400;600;700;800;900&family=Quicksand:wght=400;500;600;700&display=swap" rel="stylesheet">
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0" />
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+   <meta name="theme-color" content="#0f0a14" />
+   <meta name="mobile-web-app-capable" content="yes" />
+   <title>🌸 HabitBear 2.0 — Academic Dashboard</title>
+   <link rel="stylesheet" href="style.css" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="bg-decorations">
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
-  </div>
+  <!-- Ambient mesh orbs -->
+  <div class="bg-mesh" aria-hidden="true">
+    <div class="mesh-orb orb1"></div>
+    <div class="mesh-orb orb2"></div>
+    <div class="mesh-orb orb3"></div>
+  </div> 
 
-  <header class="hero">
-    <div class="hero-content">
-      <div class="mascot-wrapper">
-        <div class="mascot" id="mascot">
-          <div class="bear-body">
-            <div class="ear ear-left"><div class="ear-inner"></div></div>
-            <div class="ear ear-right"><div class="ear-inner"></div></div>
-            <div class="bear-head">
-              <div class="eyes">
-                <div class="eye eye-left"></div>
-                <div class="eye eye-right"></div>
+  <!-- Flower layer -->
+  <div class="flowers-layer" id="flowersLayer" aria-hidden="true"></div>
+
+  <!-- Page navigation dots -->
+  <nav id="page-nav" aria-label="Navigasi halaman">
+    <div class="page-dot active" data-target="0" title="Home"></div>
+    <div class="page-dot" data-target="1" title="Analytics"></div>
+    <div class="page-dot" data-target="2" title="Tracker"></div>
+    <div class="page-dot" data-target="3" title="Notes"></div>
+  </nav>
+
+  <!-- ═══ FULLPAGE CONTAINER ═══ -->
+  <div id="fullpage-container">
+
+    <!-- ══ PAGE 1: HERO ══ -->
+    <section class="fp-section is-active" id="page-hero" data-page="0">
+      <div class="fp-content hero-inner" style="position:relative;z-index:2;">
+        <div class="mascot-wrap" id="mascot" title="Klik untuk semangat!">
+          <div class="mascot">
+            <div class="bear-body">
+              <div class="ear ear-left"><div class="ear-inner"></div></div>
+              <div class="ear ear-right"><div class="ear-inner"></div></div>
+              <div class="bear-head">
+                <div class="eyes">
+                  <div class="eye eye-left"></div>
+                  <div class="eye eye-right"></div>
+                </div>
+                <div class="bear-nose"></div>
+                <div class="bear-mouth"><div class="mouth-line"></div></div>
+                <div class="blush blush-left"></div>
+                <div class="blush blush-right"></div>
               </div>
-              <div class="bear-nose"></div>
-              <div class="bear-mouth"><div class="mouth-line"></div></div>
-              <div class="blush blush-left"></div><div class="blush blush-right"></div>
             </div>
           </div>
         </div>
-        <div class="bear-shadow"></div>
-      </div>
-      <div class="hero-text">
-        <h1 class="app-title">HabitBear 🐻</h1>
-        <p class="app-subtitle">Sistem Pelacak Kebiasaan & Perencanaan Kuliah Digital</p>
-      </div>
-    </div>
-  </header>
 
-  <section class="dashboard-stats max-width-container pop-in">
-    <div class="stat-card box-progress">
-      <div class="stat-info">
-        <span class="stat-icon">🎯</span>
-        <div>
-          <h4>Total Goal Progress</h4>
-          <p>Persentase keberhasilan kebiasaanmu</p>
+        <h1 class="hero-title">HabitBear 🧸</h1>
+        <p class="hero-subtitle">Pelacak Kebiasaan &amp; Perencanaan Kuliah Digital</p>
+
+        <div class="hero-date-pill">
+          <div>
+            <div class="date-big" id="heroDay">—</div>
+          </div>
+          <div style="width:1px;height:28px;background:var(--border)"></div>
+          <div class="date-sub" id="heroDate">Loading...</div>
+        </div>
+
+        <div class="hero-scroll-hint">Geser ke bawah</div>
+      </div>
+    </section>
+
+    <!-- ══ PAGE 2: ANALYTICS ══ -->
+    <section class="fp-section" id="page-analytics" data-page="1">
+      <div class="fp-inner">
+        <div class="fp-content">
+          <div style="padding-top:24px">
+            <p class="section-eyebrow">Overview</p>
+            <h2 class="section-title-lg" style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:16px">Analytics Dashboard</h2>
+          </div>
+
+          <!-- KPI Row -->
+          <div class="kpi-row">
+            <div class="kpi-card pop-in d1">
+              <div class="kpi-glow" style="background:var(--orchid)"></div>
+              <div class="kpi-label">Habit Selesai</div>
+              <div class="kpi-value" id="kpiHabitPct" style="color:var(--orchid)">0%</div>
+              <div class="kpi-sub">minggu ini</div>
+              <div class="ring-wrap" style="margin-top:10px">
+                <svg class="progress-ring-svg" width="44" height="44" viewBox="0 0 44 44">
+                  <circle class="progress-ring-bg" cx="22" cy="22" r="18"/>
+                  <circle class="progress-ring-fill" id="ringHabit" cx="22" cy="22" r="18"
+                    stroke="var(--orchid)" stroke-dasharray="113" stroke-dashoffset="113"/>
+                </svg>
+                <div>
+                  <div style="font-size:0.7rem;color:var(--text-2)"><span id="kpiHabitDone">0</span> / <span id="kpiHabitTotal">0</span> cek</div>
+                </div>
+              </div>
+              <span class="kpi-trend trend-up" id="trendHabit">↑ Bagus!</span>
+            </div>
+
+            <div class="kpi-card pop-in d2">
+              <div class="kpi-glow" style="background:var(--blush)"></div>
+              <div class="kpi-label">Todo Selesai</div>
+              <div class="kpi-value" id="kpiTodoPct" style="color:var(--blush)">0/0</div>
+              <div class="kpi-sub">task terpenuhi</div>
+              <div style="margin-top:12px">
+                <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:6px;overflow:hidden">
+                  <div id="todoBar" style="height:100%;background:linear-gradient(90deg,var(--blush),var(--dusty-rose));width:0%;transition:width 0.8s var(--ease-out);border-radius:6px"></div>
+                </div>
+              </div>
+              <span class="kpi-trend trend-flat" id="trendTodo">— On track</span>
+            </div>
+
+            <div class="kpi-card pop-in d3">
+              <div class="kpi-glow" style="background:var(--rose-gold)"></div>
+              <div class="kpi-label">Streak Aktif</div>
+              <div class="kpi-value" id="kpiStreak" style="color:var(--rose-gold)">0</div>
+              <div class="kpi-sub">hari berturut-turut 🔥</div>
+              <div class="session-dots" id="streakDots" style="margin-top:12px"></div>
+              <span class="kpi-trend trend-up" id="trendStreak">Keep it up!</span>
+            </div>
+
+            <div class="kpi-card pop-in d4">
+              <div class="kpi-glow" style="background:var(--sage)"></div>
+              <div class="kpi-label">Total Catatan</div>
+              <div class="kpi-value" id="kpiNotes" style="color:var(--sage)">0</div>
+              <div class="kpi-sub">sticky notes aktif</div>
+              <div style="margin-top:14px;font-size:0.72rem;color:var(--text-3)">Terakhir diperbarui</div>
+              <div style="font-size:0.75rem;color:var(--text-2);font-weight:600" id="lastNoteTime">—</div>
+            </div>
+          </div>
+
+          <!-- Chart Row -->
+          <div class="chart-row">
+            <div class="analytics-card pop-in d2">
+              <div class="analytics-card-title">Aktivitas 7 Hari Terakhir</div>
+              <div class="bar-chart" id="weeklyBarChart"></div>
+            </div>
+            <div class="analytics-card pop-in d3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px">
+              <div class="analytics-card-title" style="text-align:center;margin-bottom:0">Distribusi Status</div>
+              <svg width="110" height="110" viewBox="0 0 110 110">
+                <circle cx="55" cy="55" r="42" fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="14"/>
+                <circle id="donutDone" cx="55" cy="55" r="42" fill="none" stroke="var(--sage)" stroke-width="14"
+                  stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round"
+                  transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1s var(--ease-out)"/>
+                <circle id="donutSkip" cx="55" cy="55" r="42" fill="none" stroke="var(--dusty-rose)" stroke-width="14"
+                  stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round"
+                  transform="rotate(-90 55 55)" style="transition:stroke-dashoffset 1s var(--ease-out)"/>
+                <text x="55" y="50" text-anchor="middle" fill="white" font-size="18" font-weight="900" font-family="Outfit"
+                      id="donutPctText">0%</text>
+                <text x="55" y="65" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Outfit">selesai</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--sage)"></div>Selesai (<span id="lgDone">0</span>)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--dusty-rose)"></div>Dilewati (<span id="lgSkip">0</span>)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.12)"></div>Belum (<span id="lgPending">0</span>)</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="progress-circle-container">
-        <div class="progress-bar-linear">
-          <div class="progress-fill" id="habitProgressFill" style="width: 0%"></div>
+    </section>
+
+    <!-- ══ PAGE 3: TRACKER ══ -->
+    <section class="fp-section" id="page-tracker" data-page="2">
+      <div class="fp-inner">
+        <div class="fp-content">
+          <div style="padding-top:24px">
+            <p class="section-eyebrow">Tracker</p>
+            <h2 class="section-title-lg" style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:8px">Habit &amp; Planning</h2>
+          </div>
+
+          <!-- Month tabs -->
+          <div class="month-tabs-wrapper">
+            <div class="month-tabs" id="monthTabs"></div>
+          </div>
+
+          <div class="main-grid">
+            <section class="left-column">
+              <!-- Add Habit -->
+              <div class="card pop-in d1">
+                <h2 class="card-title">✦ Target Kebiasaan Baru</h2>
+                <div class="add-form">
+                  <div class="emoji-picker-wrapper">
+                    <button class="emoji-trigger" id="emojiTrigger" type="button">🌸</button>
+                    <div class="emoji-grid" id="emojiGrid">
+                      <span class="emoji-opt" data-emoji="🌸">🌸</span>
+                      <span class="emoji-opt" data-emoji="💪">💪</span>
+                      <span class="emoji-opt" data-emoji="📚">📚</span>
+                      <span class="emoji-opt" data-emoji="💧">💧</span>
+                      <span class="emoji-opt" data-emoji="🏃">🏃</span>
+                      <span class="emoji-opt" data-emoji="🧠">🧠</span>
+                      <span class="emoji-opt" data-emoji="❤️">❤️</span>
+                      <span class="emoji-opt" data-emoji="🎯">🎯</span>
+                      <span class="emoji-opt" data-emoji="🌿">🌿</span>
+                      <span class="emoji-opt" data-emoji="⭐">⭐</span>
+                      <span class="emoji-opt" data-emoji="🎨">🎨</span>
+                      <span class="emoji-opt" data-emoji="✍️">✍️</span>
+                    </div>
+                  </div>
+                  <input class="habit-input" id="habitInput" placeholder="Nama kebiasaan baru..." maxlength="40" />
+                  <button class="btn-add" id="btnAdd" type="button">Tambah</button>
+                </div>
+              </div>
+
+              <!-- Tracker Table -->
+              <div class="card pop-in d2">
+                <div class="tracker-header">
+                  <h2 class="card-title" style="margin-bottom:0">
+                    🗓️ Habit Tracker
+                    <span class="card-badge" id="activeMonthLabel">—</span>
+                  </h2>
+                  <div class="week-selector">
+                    <button id="btnPrevWeek">‹</button>
+                    <span id="currentWeekLabel">Minggu 1</span>
+                    <button id="btnNextWeek">›</button>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="tracker-table">
+                    <thead>
+                      <tr>
+                        <th style="text-align:left;min-width:120px">Kebiasaan</th>
+                        <th>S</th><th>S</th><th>R</th><th>K</th><th>J</th><th>S</th><th>M</th>
+                        <th>✕</th>
+                      </tr>
+                    </thead>
+                    <tbody id="trackerTableBody"></tbody>
+                  </table>
+                  <div class="empty-state" id="emptyState">
+                    <p>🐻 Belum ada target minggu ini. Tambahkan di atas!</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="right-column">
+              <!-- Calendar -->
+              <div class="card pop-in d2">
+                <h3 class="card-title">📅 Kalender Bulanan</h3>
+                <div class="mini-calendar" id="miniCalendar"></div>
+              </div>
+
+              <!-- Schedule -->
+              <div class="card pop-in d3">
+                <h3 class="card-title">🎓 Jadwal Kuliah</h3>
+                <div class="schedule-list">
+                  <div class="schedule-item monday">
+                    <div class="day-badge">SENIN</div>
+                    <div class="subjects"><span>🗄️ Basis Data</span><span>💼 Manajemen Bisnis</span></div>
+                  </div>
+                  <div class="schedule-item tuesday">
+                    <div class="day-badge">SELASA</div>
+                    <div class="subjects"><span>💻 Bahasa Pemrograman</span></div>
+                  </div>
+                  <div class="schedule-item wednesday">
+                    <div class="day-badge">RABU</div>
+                    <div class="subjects"><span>📈 Statistika</span><span>📊 Sistem Informasi</span><span>🕌 Keagamaan</span></div>
+                  </div>
+                  <div class="schedule-item thursday">
+                    <div class="day-badge">KAMIS</div>
+                    <div class="subjects"><span>🦅 Pancasila</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- To-Do -->
+              <div class="card pop-in d4">
+                <h3 class="card-title">📝 Planning &amp; To-Do</h3>
+                <div class="todo-form">
+                  <input type="text" id="todoInput" placeholder="Tugas atau rencana baru..." maxlength="50" />
+                  <button id="btnTodoAdd" type="button">✦</button>
+                </div>
+                <ul class="todo-list" id="todoList"></ul>
+              </div>
+            </section>
+          </div>
         </div>
-        <span class="progress-text-pct" id="habitProgressText">0% Selesai</span>
+      </div>
+    </section>
+
+    <!-- ══ PAGE 4: NOTES ══ -->
+    <section class="fp-section" id="page-notes" data-page="3">
+      <div class="fp-inner">
+        <div class="fp-content">
+          <div style="padding-top:24px">
+            <p class="section-eyebrow">Catatan</p>
+            <h2 class="section-title-lg" style="font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:16px">Sticky Notes ✨</h2>
+          </div>
+
+          <div class="notes-toolbar">
+            <div class="notes-toolbar-left">
+              <span class="note-count-badge" id="noteCountBadge">0 catatan</span>
+              <div class="color-palette" id="colorPalette">
+                <div class="color-swatch active" data-color="note-yellow"   style="background:#fef0e6" title="Peach"></div>
+                <div class="color-swatch" data-color="note-pink"    style="background:#fce4ef" title="Pink"></div>
+                <div class="color-swatch" data-color="note-mint"    style="background:#e6f5f1" title="Mint"></div>
+                <div class="color-swatch" data-color="note-lavender"style="background:#ede9fe" title="Lavender"></div>
+                <div class="color-swatch" data-color="note-sky"     style="background:#dbeafe" title="Sky"></div>
+                <div class="color-swatch" data-color="note-peach"   style="background:#fff0e8" title="Krem"></div>
+              </div>
+            </div>
+            <button class="btn-new-note" id="btnNewNote" type="button">
+              🌸 Catatan Baru
+            </button>
+          </div>
+          <div class="notes-grid" id="notesGrid"></div>
+
+          <footer class="app-footer" style="margin-top:30px">
+            🌸 HabitBear 2.0 — Academic &amp; Habit Dashboard, crafted with love ✨
+          </footer>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end fullpage-container -->
+
+  <!-- ══ FAB ══ -->
+  <button class="sweep-fab" id="sweepTrigger" type="button">
+    <span class="fab-icon">⏱</span>
+    <span class="fab-label">Pomodoro</span>
+    <span class="fab-pill">Timer</span>
+  </button>
+
+  <!-- ══ BOTTOM SHEET ══ -->
+  <div class="sheet-overlay" id="sheetOverlay">
+    <div class="sheet-backdrop" id="sheetBackdrop"></div>
+    <div class="bottom-sheet" id="bottomSheet">
+      <div class="sheet-handle-bar" id="sheetHandle"></div>
+
+      <div class="sheet-section-title">Navigasi Cepat</div>
+      <div class="sheet-nav-grid">
+        <a class="sheet-nav-item" href="#" onclick="navToPage(0);closeSheet();return false;">
+          <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+        </a>
+        <a class="sheet-nav-item" href="#" onclick="navToPage(1);closeSheet();return false;">
+          <span class="nav-icon">📊</span><span class="nav-label">Analytics</span>
+        </a>
+        <a class="sheet-nav-item" href="#" onclick="navToPage(2);closeSheet();return false;">
+          <span class="nav-icon">🗓️</span><span class="nav-label">Tracker</span>
+        </a>
+        <a class="sheet-nav-item" href="#" onclick="navToPage(3);closeSheet();return false;">
+          <span class="nav-icon">🗒️</span><span class="nav-label">Notes</span>
+        </a>
+      </div>
+
+      <div class="sheet-section-title">⏱ Pomodoro Timer</div>
+      <div class="pomo-wrap">
+        <div class="pomo-modes">
+          <button class="mode-btn active" id="modeFocus" data-time="1500">Fokus</button>
+          <button class="mode-btn" id="modeShort" data-time="300">Istirahat</button>
+          <button class="mode-btn" id="modeLong"  data-time="900">Panjang</button>
+        </div>
+
+        <!-- Fixed pomodoro ring -->
+        <div class="pomo-display">
+          <svg class="pomo-progress-ring" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(212,165,116,0.1)" stroke-width="7"/>
+            <circle id="pomoRingFill" cx="80" cy="80" r="68"
+              fill="none" stroke="var(--rose-gold)" stroke-width="7"
+              stroke-linecap="round"
+              stroke-dasharray="427"
+              stroke-dashoffset="0"
+              transform="rotate(-90 80 80)"
+              style="transition:stroke-dashoffset 1s linear"/>
+          </svg>
+          <div class="pomo-center-text">
+            <span class="pomo-timer-text" id="pomoTimerText">25:00</span>
+            <span class="pomo-mode-label" id="pomoModeLabel">Fokus 🌸</span>
+          </div>
+        </div>
+
+        <div class="pomo-controls">
+          <button class="pomo-btn primary" id="btnStartPomo" type="button">▶ Mulai</button>
+          <button class="pomo-btn" id="btnPausePomo" type="button">⏸ Jeda</button>
+          <button class="pomo-btn" id="btnResetPomo" type="button">↺ Reset</button>
+        </div>
+        <div class="session-dots" id="pomoDots">
+          <div class="session-dot"></div>
+          <div class="session-dot"></div>
+          <div class="session-dot"></div>
+          <div class="session-dot"></div>
+        </div>
+        <div class="pomo-count" id="pomoCount">Sesi selesai: <strong>0</strong></div>
+      </div>
+
+      <div class="sheet-section-title">Ringkasan Hari Ini</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+        <div style="background:rgba(212,165,116,0.07);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;text-align:center">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--orchid)" id="sheetHabitStat">0%</div>
+          <div style="font-size:0.7rem;color:var(--text-3);margin-top:3px">Habit Progress</div>
+        </div>
+        <div style="background:rgba(212,165,116,0.07);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;text-align:center">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--sage)" id="sheetTodoStat">0</div>
+          <div style="font-size:0.7rem;color:var(--text-3);margin-top:3px">Todo Selesai</div>
+        </div>
       </div>
     </div>
-
-    <div class="stat-card box-tasks">
-      <div class="stat-info">
-        <span class="stat-icon">🚀</span>
-        <div>
-          <h4>Planning Tasks Completed</h4>
-          <p>Tugas kuliah & rencana terselesaikan</p>
-        </div>
-      </div>
-      <div class="todo-counter-box">
-        <span class="counter-number" id="todoCounter">0/0</span>
-        <p>Target Terpenuhi</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="month-tabs-container">
-    <div class="month-tabs" id="monthTabs"></div>
   </div>
-
-  <main class="main-grid">
-    
-    <section class="left-column">
-      <div class="card add-habit-card pop-in">
-        <h2 class="card-title">➕ Tambah Target Kebiasaan Baru</h2>
-        <div class="add-form">
-          <div class="emoji-picker-wrapper">
-            <button class="emoji-trigger" id="emojiTrigger" type="button">🌟</button>
-            <div class="emoji-grid" id="emojiGrid">
-              <span class="emoji-opt" data-emoji="🌟">🌟</span>
-              <span class="emoji-opt" data-emoji="💪">💪</span>
-              <span class="emoji-opt" data-emoji="📚">📚</span>
-              <span class="emoji-opt" data-emoji="💧">💧</span>
-              <span class="emoji-opt" data-emoji="🏃">🏃</span>
-              <span class="emoji-opt" data-emoji="🧠">🧠</span>
-              <span class="emoji-opt" data-emoji="❤️">❤️</span>
-            </div>
-          </div>
-          <input type="text" id="habitInput" class="habit-input" placeholder="Misal: Belajar coding, Baca buku 10 lembar..." maxlength="40" />
-          <button class="btn-add" id="btnAdd" type="button">Simpan</button>
-        </div>
-      </div>
-
-      <div class="card tracker-card pop-in animation-delay-1">
-        <div class="tracker-header">
-          <h2 class="card-title">🗓️ Tracker Kebiasaan (<span id="activeMonthLabel">Januari</span>)</h2>
-          <div class="week-selector">
-            <button id="btnPrevWeek" type="button">◀</button>
-            <span id="currentWeekLabel">Minggu 1</span>
-            <button id="btnNextWeek" type="button">▶</button>
-          </div>
-        </div>
-        
-        <div class="table-responsive">
-          <table class="tracker-table">
-            <thead>
-              <tr>
-                <th>KEBIASAAN</th>
-                <th>S</th><th>S</th><th>R</th><th>K</th><th>J</th><th>S</th><th>M</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="trackerTableBody"></tbody>
-          </table>
-          <div class="empty-state" id="emptyState">
-            <p>Belum ada target di minggu ini. Tambahkan goal pertamamu di atas! 🐻</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="right-column">
-      <div class="card calendar-card pop-in">
-        <h3 class="card-title">📅 Kalender Aktivitas Bulanan</h3>
-        <div class="mini-calendar" id="miniCalendar"></div>
-      </div>
-
-      <div class="card schedule-card pop-in animation-delay-1">
-        <h3 class="card-title">🎓 Jadwal Kuliah</h3>
-        <div class="schedule-list">
-          <div class="schedule-item monday">
-            <div class="day-badge">SENIN</div>
-            <div class="subjects"><span>🗄️ Basis Data</span><span>💼 Manajemen Bisnis</span></div>
-          </div>
-          <div class="schedule-item tuesday">
-            <div class="day-badge">SELASA</div>
-            <div class="subjects"><span>💻 Bahasa Pemrograman</span></div>
-          </div>
-          <div class="schedule-item wednesday">
-            <div class="day-badge">RABU</div>
-            <div class="subjects"><span>📈 Statistika</span><span>📊 Sistem informasi</span><span>🕌 Keagamaan</span></div>
-          </div>
-          <div class="schedule-item thursday">
-            <div class="day-badge">KAMIS</div>
-            <div class="subjects"><span>🦅 Pancasila</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card todo-card pop-in animation-delay-2">
-        <h3 class="card-title">📝 Planning & To-Do List</h3>
-        <div class="todo-form">
-          <input type="text" id="todoInput" placeholder="Tulis rencana / tugas kuliah baru..." maxlength="50" />
-          <button id="btnTodoAdd" type="button">➕</button>
-        </div>
-        <ul class="todo-list" id="todoList"></ul>
-      </div>
-    </section>
-  </main>
-
-  <section class="notes-container max-width-container pop-in animation-delay-2">
-    <div class="card notes-card">
-      <h3 class="card-title">🗒️ Catatan Panjang, Ide, & Refleksi Rencana Masa Depan</h3>
-      <p class="notes-subtitle">Semua catatan di bawah ini otomatis tersimpan langsung ke sistem browser-mu secara real-time.</p>
-      <textarea id="planningNotes" class="planning-textarea" placeholder="Tulis draft jurnal, rangkuman projek kuliah, coretan ide kreatif, atau rencana jangka panjangmu di sini... 💡"></textarea>
-      <div class="notes-status-bar">
-        <span id="saveStatusIcon">✨ Aman</span>
-        <span id="saveStatusText">Semua tulisan telah disimpan otomatis ke LocalStorage</span>
-      </div>
-    </div>
-  </section>
-
-  <footer class="app-footer">
-    <p>🐻 HabitBear Premium Dashboard ✨ Organisasi Kuliah & Pelacak Rencana Hidup</p>
-  </footer>
 
   <div class="toast" id="toast"></div>
-
   <script src="script.js"></script>
 </body>
 </html>
